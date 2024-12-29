@@ -1,0 +1,51 @@
+# Import and download packages
+import requests
+from bs4 import BeautifulSoup
+import nltk
+from collections import Counter
+from nltk.corpus import stopwords
+from nltk.tokenize import RegexpTokenizer
+
+nltk.download('stopwords')
+
+# Start coding here... 
+# Import and download packages
+import requests
+from bs4 import BeautifulSoup
+import nltk
+from collections import Counter
+nltk.download('stopwords')
+
+r = requests.get('https://s3.amazonaws.com/assets.datacamp.com/production/project_147/datasets/2701-h.htm')
+
+r.encoding = 'utf-8'
+
+html = r.text
+
+print(html[0:2000])
+
+html_soup = BeautifulSoup(html, "html.parser")
+
+moby_text = html_soup.get_text()
+
+tokenizer = nltk.tokenize.RegexpTokenizer('\w+')
+
+tokens = tokenizer.tokenize(moby_text)
+
+words = [token.lower() for token in tokens]
+
+words[:8]
+
+stop_words = nltk.corpus.stopwords.words('english')
+
+stop_words[:8]
+
+words_no_stop = [word for word in words if word not in stop_words]
+
+words_no_stop[:5]
+
+count = Counter(words_no_stop)
+
+top_ten = count.most_common(10)
+
+print(top_ten)
