@@ -3,17 +3,6 @@ import requests
 from bs4 import BeautifulSoup
 import nltk
 from collections import Counter
-from nltk.corpus import stopwords
-from nltk.tokenize import RegexpTokenizer
-
-nltk.download('stopwords')
-
-# Start coding here... 
-# Import and download packages
-import requests
-from bs4 import BeautifulSoup
-import nltk
-from collections import Counter
 nltk.download('stopwords')
 
 r = requests.get('https://s3.amazonaws.com/assets.datacamp.com/production/project_147/datasets/2701-h.htm')
